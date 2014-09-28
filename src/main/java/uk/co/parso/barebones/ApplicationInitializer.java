@@ -8,7 +8,11 @@ package uk.co.parso.barebones;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
- *
+ * Main initialization class.
+ * 
+ * Ultimately this implements WebApplicationInitializer which the 
+ * servlet container will look for.
+ * 
  * @author sam
  */
 public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {

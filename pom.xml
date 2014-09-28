@@ -11,10 +11,6 @@
         <!-- Spring -->
         <spring-framework.version>4.1.0.RELEASE</spring-framework.version>
         
-        <!-- Logging -->
-        <logback.version>1.1.2</logback.version>
-        <slf4j.version>1.7.7</slf4j.version>
-        
         <!-- Servlet -->
         <javax-servlet.version>3.0.1</javax-servlet.version>
     </properties>
@@ -52,20 +48,6 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>${javax-servlet.version}</version>
             <scope>provided</scope>
-        </dependency>
-        
-        <!-- Logging with SLF4J & LogBack -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
     
