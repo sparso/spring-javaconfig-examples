@@ -8,6 +8,7 @@
     
     <modules>
         <module>spring-barebones-javaconfig</module>
+        <module>spring-logback-javaconfig</module>
     </modules>
     
     <build>

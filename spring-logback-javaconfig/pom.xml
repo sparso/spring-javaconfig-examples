@@ -7,7 +7,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <groupId>uk.co.parso</groupId>
-    <artifactId>spring-barebones-javaconfig</artifactId>
+    <artifactId>spring-logback-javaconfig</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <properties>
@@ -18,6 +18,14 @@
         
         <!-- Servlet -->
         <javax-servlet.version>3.0.1</javax-servlet.version>
+        
+        <!-- Logging -->
+        <logback.version>1.1.2</logback.version>
+        <slf4j.version>1.7.7</slf4j.version>
+        
+        <!-- Email -->
+        <mail.version>1.4.7</mail.version>
+        <activation.version>1.1.1</activation.version>
     </properties>
     
     <dependencyManagement>
@@ -54,6 +62,45 @@
             <version>${javax-servlet.version}</version>
             <scope>provided</scope>
         </dependency>
+        
+        <!-- Logging with SLF4J & LogBack -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-ext</artifactId>
+            <version>${slf4j.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <type>jar</type>
+        </dependency>
+        
+        <!-- Email -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>${mail.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>${activation.version}</version>
+        </dependency>
+
     </dependencies>
     
     <build>
