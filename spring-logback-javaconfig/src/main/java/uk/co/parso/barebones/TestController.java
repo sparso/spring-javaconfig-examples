@@ -22,7 +22,9 @@ public class TestController {
     public String ack() {
         logger.debug("This is some debug");
         logger.warn("This is a warning");
-        logger.error("This is an error");
+        
+        Exception ex = new Exception("test exception");
+        logger.error("This is an error",ex);
         
         return "ack";
     }
