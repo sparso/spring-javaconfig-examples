@@ -9,6 +9,8 @@
     <modules>
         <module>spring-barebones-javaconfig</module>
         <module>spring-logback-javaconfig</module>
+        <module>uk.co.parso_spring-taskexecutor-javaconfig_war_1.0-SNAPSHOT</module>
+        <module>uk.co.parso_spring-jpa-javaconfig_war_1.0-SNAPSHOT</module>
     </modules>
     
     <build>
