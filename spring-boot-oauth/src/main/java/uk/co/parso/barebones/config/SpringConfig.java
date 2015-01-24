@@ -14,9 +14,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @author sam
  */
 @Configuration
-// Import Spring MVC configuration, which does things like enable 
-// the use of @Controller
-@EnableWebMvc
 public class SpringConfig {
     @PreDestroy
     public void preDestroy() {
