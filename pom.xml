@@ -12,7 +12,8 @@
         <module>spring-taskexecutor-javaconfig</module>
         <module>spring-jpa-javaconfig</module>
         <module>spring-boot-basic</module>
-        <module>sprint-boot-oauth</module>
+        <module>spring-boot-oauth</module>
+        <module>spring-boot-amqp-server</module>
     </modules>
     
     <build>
