@@ -5,3 +5,5 @@
 /spring-boot-basic/target/
 /spring-boot-basic2/target/
 /spring-boot-oauth/target/
+/spring-boot-amqp-server/target/
+/spring-boot-amqp-client/target/
