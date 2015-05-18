@@ -1,5 +1,6 @@
 package uk.co.parso.barebones.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -9,6 +10,8 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.remoting.client.AmqpProxyFactoryBean;
 import org.springframework.amqp.remoting.service.AmqpInvokerServiceExporter;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -52,7 +55,15 @@ public class AmqpConfig {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
         rabbitTemplate.setReplyTimeout(10_000);
         rabbitTemplate.setExchange("amq.direct");
+        rabbitTemplate.setMessageConverter(jsonMessageConverter());
         return rabbitTemplate;
+    }
+    
+    @Bean
+    public MessageConverter jsonMessageConverter() {
+        Jackson2JsonMessageConverter converter = new Jackson2JsonMessageConverter();
+        converter.setJsonObjectMapper(new ObjectMapper());
+        return converter;
     }
     
     // Exposes the proxied service for use as a bean reference, using the specified service interface.
