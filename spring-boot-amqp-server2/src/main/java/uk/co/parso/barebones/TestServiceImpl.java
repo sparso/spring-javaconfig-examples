@@ -21,9 +21,15 @@ public class TestServiceImpl implements TestService {
     private static final Logger log = LoggerFactory.getLogger(TestServiceImpl.class);
 
     @Override
-    public String test(TestObject message) {
-        log.debug("Received {}",message.getBlah());
+    public String test(TestObject message,TestObject2 message2) {
+        log.debug("test1: Received {}, {}, {}, {}",message.getBlah(),message2.getObj().getBlah(),message2.getObj2(),message2.getObj3());
         return "ACK";
+    }
+
+    @Override
+    public int test2(String param1, int param2) {
+        log.debug("test2: Received {},{}",param1,param2);
+        return 123;
     }
     
 }

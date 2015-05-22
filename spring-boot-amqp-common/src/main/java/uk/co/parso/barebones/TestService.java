@@ -6,10 +6,13 @@
 
 package uk.co.parso.barebones;
 
+import java.util.Map;
+
 /**
  *
  * @author sam
  */
-public interface TestService2 {
-    public String test2(String message);
+public interface TestService {
+    public String test(TestObject message, TestObject2 message2);
+    public int test2(String param1,int param2);
 }

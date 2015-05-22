@@ -6,10 +6,20 @@
 
 package uk.co.parso.barebones;
 
+import java.io.Serializable;
+
 /**
  *
  * @author sam
  */
-public interface TestService2 {
-    public String test2(String message);
+public class TestObject implements Serializable {
+    private String blah;
+    
+    public void setBlah(String blah) {
+        this.blah = blah;
+    }
+    
+    public String getBlah() {
+        return blah;
+    }
 }
