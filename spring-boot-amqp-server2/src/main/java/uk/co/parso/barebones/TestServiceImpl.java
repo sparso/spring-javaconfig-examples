@@ -6,6 +6,7 @@
 
 package uk.co.parso.barebones;
 
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,8 @@ public class TestServiceImpl implements TestService {
     private static final Logger log = LoggerFactory.getLogger(TestServiceImpl.class);
 
     @Override
-    public String test(String message) {
-        log.debug("Received {}",message);
+    public String test(TestObject message) {
+        log.debug("Received {}",message.getBlah());
         return "ACK";
     }
     

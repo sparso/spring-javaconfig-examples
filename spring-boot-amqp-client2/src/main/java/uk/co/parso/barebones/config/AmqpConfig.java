@@ -1,6 +1,8 @@
 package uk.co.parso.barebones.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.HashMap;
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -10,6 +12,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.remoting.client.AmqpProxyFactoryBean;
 import org.springframework.amqp.remoting.service.AmqpInvokerServiceExporter;
+import org.springframework.amqp.support.converter.DefaultJackson2JavaTypeMapper;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import uk.co.parso.barebones.TestObject;
 import uk.co.parso.barebones.TestService;
 import uk.co.parso.barebones.TestService2;
 
@@ -55,14 +59,13 @@ public class AmqpConfig {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
         rabbitTemplate.setReplyTimeout(10_000);
         rabbitTemplate.setExchange("amq.direct");
-        rabbitTemplate.setMessageConverter(jsonMessageConverter());
+        rabbitTemplate.setMessageConverter(messageConverter());
         return rabbitTemplate;
     }
     
-    @Bean
-    public MessageConverter jsonMessageConverter() {
+    public static Jackson2JsonMessageConverter messageConverter() {
         Jackson2JsonMessageConverter converter = new Jackson2JsonMessageConverter();
-        converter.setJsonObjectMapper(new ObjectMapper());
+        converter.setClassMapper(new DefaultJackson2JavaTypeMapper());
         return converter;
     }
     
@@ -91,14 +94,18 @@ public class AmqpConfig {
     @Scheduled(fixedDelay=10_000)
     public void sendMessage() {
         log.debug("Sending message");
-        String response = testService.test("HELLO");
+        Map<String,String> msg = new HashMap<>();
+        msg.put("TEST", "TEST");
+        TestObject obj = new TestObject();
+        obj.setBlah("awooga");
+        String response = testService.test(obj);
         log.debug("Received response: {}",response);
     }
     
-    @Scheduled(fixedDelay=10_000)
+    /*@Scheduled(fixedDelay=10_000)
     public void sendMessage2() {
         log.debug("Sending message2");
         String response = testService2.test2("HELLO");
         log.debug("Received response: {}",response);
-    }
+    }*/
 }

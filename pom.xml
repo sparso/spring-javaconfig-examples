@@ -17,6 +17,7 @@
         <module>spring-boot-amqp-server2</module>
         <module>spring-boot-amqp-client</module>
         <module>spring-boot-amqp-client2</module>
+        <module>spring-boot-amqp-common</module>
     </modules>
     
     <build>

@@ -46,6 +46,11 @@
     </dependencyManagement>
     
     <dependencies>
+        <dependency>
+            <groupId>uk.co.parso</groupId>
+            <artifactId>spring-boot-amqp-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!-- Spring and Transactions -->
         <dependency>
             <groupId>org.springframework</groupId>
