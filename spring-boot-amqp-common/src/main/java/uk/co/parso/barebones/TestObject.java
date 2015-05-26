@@ -15,6 +15,14 @@ import java.io.Serializable;
 public class TestObject implements Serializable {
     private String blah;
     
+    public TestObject() {
+        
+    }
+    
+    public TestObject(String blah) {
+        this.blah = blah;
+    }
+    
     public void setBlah(String blah) {
         this.blah = blah;
     }

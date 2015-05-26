@@ -27,9 +27,14 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public int test2(String param1, int param2) {
+    public TestObject test2(String param1, int param2) {
         log.debug("test2: Received {},{}",param1,param2);
-        return 123;
+        return new TestObject("test");
+    }
+
+    @Override
+    public void test3() throws CustomException {
+        throw new CustomException();
     }
     
 }

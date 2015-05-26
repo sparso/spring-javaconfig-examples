@@ -1,5 +1,6 @@
 package uk.co.parso.barebones.config;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.remoting.client.AmqpProxyFactoryBean;
 import org.springframework.amqp.support.converter.DefaultJackson2JavaTypeMapper;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +20,8 @@ import org.springframework.remoting.RemoteProxyFailureException;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import uk.co.parso.barebones.CustomException;
+import uk.co.parso.barebones.RemoteInvocationMessageConverter;
 import uk.co.parso.barebones.TestObject;
 import uk.co.parso.barebones.TestObject2;
 import uk.co.parso.barebones.TestService;
@@ -56,8 +60,8 @@ public class AmqpConfig {
         return rabbitTemplate;
     }
 
-    public static Jackson2JsonMessageConverter messageConverter() {
-        Jackson2JsonMessageConverter converter = new Jackson2JsonMessageConverter();
+    public static MessageConverter messageConverter() {
+        RemoteInvocationMessageConverter converter = new RemoteInvocationMessageConverter();
         converter.setClassMapper(new DefaultJackson2JavaTypeMapper());
         return converter;
     }
@@ -89,8 +93,15 @@ public class AmqpConfig {
             TestObject2 obj2 = new TestObject2(obj, 5L, -2);
             String response = testService.test(obj, obj2);
             log.debug("Received response: {}", response);
-            int response2 = testService.test2("aaaa", 1111);
-            log.debug("Received response2: {}", response2);
+            TestObject response2 = testService.test2("aaaa", 1111);
+            log.debug("Received response2: {}", response2.getBlah());
+            log.debug("Test3");
+            try {
+                testService.test3();
+            } catch( Exception e ) {
+                log.debug("Caught exception",e);
+            }
+            log.debug("Test3 success");
         } catch (RemoteProxyFailureException e) {
             log.error("Error sending message",e);
         }

@@ -6,14 +6,10 @@
 
 package uk.co.parso.barebones;
 
-import java.util.Map;
-
 /**
  *
  * @author sam
  */
-public interface TestService {
-    public String test(TestObject message, TestObject2 message2);
-    public TestObject test2(String param1,int param2);
-    public void test3() throws CustomException;
+public class CustomException extends Exception {
+    
 }
