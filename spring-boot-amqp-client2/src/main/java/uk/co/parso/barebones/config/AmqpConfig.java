@@ -98,8 +98,8 @@ public class AmqpConfig {
             log.debug("Test3");
             try {
                 testService.test3();
-            } catch( Exception e ) {
-                log.debug("Caught exception",e);
+            } catch( CustomException e ) {
+                log.debug("Caught exception!!",e);
             }
             log.debug("Test3 success");
         } catch (RemoteProxyFailureException e) {
